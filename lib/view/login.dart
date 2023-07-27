@@ -118,7 +118,9 @@ class _LoginState extends State<Login> {
                                 labelText: "비밀번호를 입력하세요!", // 글자없어지지 않음
                                 border: OutlineInputBorder(), // 텍스트필드 테두리
                               ),
-                              keyboardType: TextInputType.text, // 키보드 형태
+                              keyboardType: TextInputType.text,
+                              obscureText: true,
+                              obscuringCharacter: "*", // 키보드 형태
                             ),
                           ),
                         ],
