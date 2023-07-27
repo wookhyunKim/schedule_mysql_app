@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:schedule_mysql_app/view/mypage.dart';
+import 'package:schedule_mysql_app/home.dart';
+import 'package:schedule_mysql_app/model/message.dart';
+import 'package:schedule_mysql_app/model/share.dart';
 import 'package:schedule_mysql_app/view/register.dart';
 import 'package:schedule_mysql_app/view/userinfo.dart';
 import 'package:http/http.dart'as http;
@@ -40,7 +42,7 @@ class _LoginState extends State<Login> {
             "Log In",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
           ),
-          backgroundColor: Colors.blue,
+          backgroundColor: color13,
           foregroundColor: Colors.white,
         ),
         body: SingleChildScrollView(
@@ -144,7 +146,7 @@ class _LoginState extends State<Login> {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue, // 버튼 배경색
+                          backgroundColor: color13, // 버튼 배경색
                           foregroundColor: Colors.white, // 버튼 글씨색
                           minimumSize: const Size(100, 35),
                           shape: RoundedRectangleBorder(
@@ -168,7 +170,7 @@ class _LoginState extends State<Login> {
                           setState(() {});
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue, // 버튼 배경색
+                          backgroundColor: color13, // 버튼 배경색
                           foregroundColor: Colors.white, // 버튼 글씨색
                           minimumSize: const Size(100, 35),
                           shape: RoundedRectangleBorder(
@@ -217,22 +219,21 @@ class _LoginState extends State<Login> {
               children: [
                 TextButton(
                   onPressed: () {
+                    Message.seq=result[0]["seq"];
+                    Message.uid=result[0]["uid"];
+                    Message.upassword=result[0]["upassword"];
+                    Message.uname=result[0]["uname"];
+                    Message.ugender=result[0]["ugender"];
+                    Message.uemail=result[0]["uemail"];
+                    Message.uphone=result[0]["uphone"];
+                    Message.uinsertdate=result[0]["uinsertdate"];
+                    Message.udeleted=result[0]["udeleted"];
                     Navigator.of(ctx).pop();
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return MyPage(
-                            seq: result[0]["seq"],
-                            uid: result[0]["uid"],
-                            upassword: result[0]["upassword"],
-                            uname: result[0]["uname"],
-                            ugender: result[0]["ugender"],
-                            uemail: result[0]["uemail"],
-                            uphone: result[0]["uphone"],
-                            uinsertdate: result[0]["uinsertdate"],
-                            udeleted: result[0]["udeleted"]
-                          );
+                          return const Home();
                         },
                       ),
                     );
@@ -297,7 +298,7 @@ class _LoginState extends State<Login> {
 
 login() async {
     var url = Uri.parse(
-        "http://192.168.35.51:8080/Flutter/login_schdule_flutter.jsp?uid=${uidController.text.trim()}&upassword=${upasswordController.text.trim()}");
+        "http://localhost:8080/Flutter/login_schdule_flutter.jsp?uid=${uidController.text.trim()}&upassword=${upasswordController.text.trim()}");
     var response = await http.get(url);
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
     List result = dataConvertedJSON["results"];

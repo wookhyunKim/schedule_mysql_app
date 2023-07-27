@@ -72,7 +72,7 @@ class _InfoState extends State<Info> {
 //select
   getJSONData() async {
     var url = Uri.parse(
-        "http://192.168.35.51:8080/Flutter/select_schdule_userinfo.jsp");
+        "http://localhost:8080/Flutter/select_schdule_userinfo.jsp");
     var response = await http.get(url); // 데이터불러오기전에 화면이 켜지는 것 방지. await
     data.clear();
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));

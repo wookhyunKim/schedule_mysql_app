@@ -1,9 +1,10 @@
 import 'dart:convert';
 
-import 'package:bettertodo_app/dpage.dart';
-import 'package:bettertodo_app/update.dart';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:schedule_mysql_app/view/dpage.dart';
+import 'package:schedule_mysql_app/view/update.dart';
 
 import 'insertpage.dart';
 
@@ -52,7 +53,7 @@ class _DiaryPageState extends State<DiaryPage> {
       body: Center(
         child: data.isEmpty
             ? const Text(
-                '이 창을 본다면 너의 멘탈을 흔들리고 있을거야',
+                'No data',
                 style: TextStyle(
                   fontSize: 20,
                 ),

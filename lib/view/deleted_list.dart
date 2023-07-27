@@ -170,7 +170,7 @@ class _DeleteListState extends State<DeleteList> {
   // 첫 화면 구성 (완료)
   addJSONData() async{
     var url = Uri.parse(
-      'http://localhost:8080/Flutter/semi_scheduler_Jin/select_deletestatus_flutter.jsp'
+      'http://localhost:8080/Flutter/select_deletestatus_flutter.jsp'
     );
     var response = await http.get(url);
     deletedList.clear();
@@ -308,7 +308,7 @@ class _DeleteListState extends State<DeleteList> {
   // 체크박스 눌렀을 때 복원여부(Y) 선택시 할 일 (완료)
   updateDeleteStatus(int seqNo, int deletestatus, int checkvalue) async {
     var url = Uri.parse(
-      'http://localhost:8080/Flutter/semi_scheduler_Jin/update_insertdate_flutter.jsp?seq=$seqNo&deletestatus=$deletestatus&checkvalue=$checkvalue'
+      'http://localhost:8080/Flutter/update_insertdate_flutter.jsp?seq=$seqNo&deletestatus=$deletestatus&checkvalue=$checkvalue'
     );
     var response = await http.get(url);
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
@@ -322,7 +322,7 @@ class _DeleteListState extends State<DeleteList> {
   // 체크박스 눌렀을 때 복원여부(N) 선택시 할 일 (완료)
   updateDeleteStatusN(int seqNo, int deletestatus, int checkvalue) async {
     var url = Uri.parse(
-      'http://localhost:8080/Flutter/semi_scheduler_Jin/update_deletestatus_flutter.jsp?seq=$seqNo&deletestatus=$deletestatus&checkvalue=$checkvalue'
+      'http://localhost:8080/Flutter/update_deletestatus_flutter.jsp?seq=$seqNo&deletestatus=$deletestatus&checkvalue=$checkvalue'
     );
     var response = await http.get(url);
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
@@ -336,7 +336,7 @@ class _DeleteListState extends State<DeleteList> {
   // 데이터베이스에서 삭제하기 (아이콘 클릭시) => checkvalue, delete status 값 가지고 삭제 (완료)
   deleteJSON() async{
     var url = Uri.parse(
-      'http://localhost:8080/Flutter/semi_scheduler_Jin/todoList_delete_flutter.jsp'
+      'http://localhost:8080/Flutter/todoList_delete_flutter.jsp'
     );
     await http.get(url);
     deleteDone();
@@ -350,7 +350,7 @@ class _DeleteListState extends State<DeleteList> {
   // 데이터베이스에서 삭제하기 (swipe 삭제시) => seq 번호 가지고 삭제 (완료)
   deleteJSONwitSeq(int seq) async{
     var url = Uri.parse(
-      'http://localhost:8080/Flutter/semi_scheduler_Jin/todoList_delete_seq_flutter.jsp?seq=$seq'
+      'http://localhost:8080/Flutter/todoList_delete_seq_flutter.jsp?seq=$seq'
     );
     await http.get(url);
     deleteDone();

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:schedule_mysql_app/model/message.dart';
+import 'package:schedule_mysql_app/model/share.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -39,142 +40,151 @@ class _RegisterState extends State<Register> {
           "Register",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: color13,
         foregroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(
-          child: Container(
-            width: 350,
-            color: const Color(0xFFF5F5DC),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
-                  child: SizedBox(
-                    width: 300,
-                    child: TextField(
-                      controller: uidController,
-                      decoration: const InputDecoration(
-                        labelText: "아이디를 입력하세요.",
-                      ),
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 100,
+              ),
+              Container(
+                height: 550,
+                width: 350,
+                color: const Color(0xFFF5F5DC),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 18, 0),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          checkID();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue, // 버튼 배경색
-                          foregroundColor: Colors.white, // 버튼 글씨색
-                          minimumSize: const Size(70, 35),
-                          shape: RoundedRectangleBorder(
-                            //  버튼 모양 깎기
-                            borderRadius: BorderRadius.circular(20), // 10은 파라미터
-                          ),
-                        ),
-                        child: const Text(
-                          "Check",
-                          style: TextStyle(
-                            fontSize: 10,
+                      padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
+                      child: SizedBox(
+                        width: 300,
+                        child: TextField(
+                          controller: uidController,
+                          decoration: const InputDecoration(
+                            labelText: "아이디를 입력하세요.",
                           ),
                         ),
                       ),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 18, 0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              checkID();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: color13, // 버튼 배경색
+                              foregroundColor: Colors.white, // 버튼 글씨색
+                              minimumSize: const Size(70, 35),
+                              shape: RoundedRectangleBorder(
+                                //  버튼 모양 깎기
+                                borderRadius: BorderRadius.circular(20), // 10은 파라미터
+                              ),
+                            ),
+                            child: const Text(
+                              "Check",
+                              style: TextStyle(
+                                fontSize: 10,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 300,
+                      child: TextField(
+                        controller: upasswordController,
+                        decoration: const InputDecoration(
+                          labelText: "비밀번호를 입력하세요.",
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 300,
+                      child: TextField(
+                        controller: unameController,
+                        decoration: const InputDecoration(
+                          labelText: "이름을 입력하세요.",
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 300,
+                      child: TextField(
+                        controller: uphoneController,
+                        decoration: const InputDecoration(
+                          labelText: "전화번호를 입력하세요.",
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 300,
+                      child: TextField(
+                        controller: uemailController,
+                        decoration: const InputDecoration(
+                          labelText: "이메일을 입력하세요.",
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text("성별 : "),
+                        Radio(
+                          value: 0,
+                          groupValue: _radioValue, //radio grouping
+                          onChanged: (value) {
+                            Message.value = value!;
+                            _radioChange(value);
+                          },
+                        ),
+                        const Text(
+                          "남성",
+                        ),
+                        Radio(
+                          value: 1,
+                          groupValue: _radioValue, //radio grouping
+                          onChanged: (value) {
+                            Message.value = value!;
+                            _radioChange(value);
+                          },
+                        ),
+                        const Text(
+                          "여성",
+                        ),
+                      ],
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        insertAction();
+                        Navigator.of(context).pop();
+                        setState(() {});
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: color13, // 버튼 배경색
+                        foregroundColor: Colors.white, // 버튼 글씨색
+                        minimumSize: const Size(100, 35),
+                        shape: RoundedRectangleBorder(
+                          //  버튼 모양 깎기
+                          borderRadius: BorderRadius.circular(5), // 5 파라미터
+                        ),
+                      ),
+                      child: const Text(
+                        "Register",
+                      ),
+                    ),
                   ],
                 ),
-                SizedBox(
-                  width: 300,
-                  child: TextField(
-                    controller: upasswordController,
-                    decoration: const InputDecoration(
-                      labelText: "비밀번호를 입력하세요.",
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 300,
-                  child: TextField(
-                    controller: unameController,
-                    decoration: const InputDecoration(
-                      labelText: "이름을 입력하세요.",
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 300,
-                  child: TextField(
-                    controller: uphoneController,
-                    decoration: const InputDecoration(
-                      labelText: "전화번호를 입력하세요.",
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 300,
-                  child: TextField(
-                    controller: uemailController,
-                    decoration: const InputDecoration(
-                      labelText: "이메일을 입력하세요.",
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("성별 : "),
-                    Radio(
-                      value: 0,
-                      groupValue: _radioValue, //radio grouping
-                      onChanged: (value) {
-                        Message.value = value!;
-                        _radioChange(value);
-                      },
-                    ),
-                    const Text(
-                      "남성",
-                    ),
-                    Radio(
-                      value: 1,
-                      groupValue: _radioValue, //radio grouping
-                      onChanged: (value) {
-                        Message.value = value!;
-                        _radioChange(value);
-                      },
-                    ),
-                    const Text(
-                      "여성",
-                    ),
-                  ],
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    insertAction();
-                    Navigator.of(context).pop();
-                    setState(() {});
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue, // 버튼 배경색
-                    foregroundColor: Colors.white, // 버튼 글씨색
-                    minimumSize: const Size(100, 35),
-                    shape: RoundedRectangleBorder(
-                      //  버튼 모양 깎기
-                      borderRadius: BorderRadius.circular(5), // 5 파라미터
-                    ),
-                  ),
-                  child: const Text(
-                    "Register",
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -258,7 +268,7 @@ class _RegisterState extends State<Register> {
         uphoneController.text.trim().isNotEmpty &
         uemailController.text.trim().isNotEmpty) {
       var url = Uri.parse(
-          "http://192.168.35.51:8080/Flutter/insert_schedule_user_register.jsp?uid=${uidController.text.trim()}&upassword=${upasswordController.text.trim()}&uname=${unameController.text.trim()}&ugender=${Message.value}&uemail=${uemailController.text.trim()}&uphone=${uphoneController.text.trim()}");
+          "http://localhost:8080/Flutter/insert_schedule_user_register.jsp?uid=${uidController.text.trim()}&upassword=${upasswordController.text.trim()}&uname=${unameController.text.trim()}&ugender=${Message.value}&uemail=${uemailController.text.trim()}&uphone=${uphoneController.text.trim()}");
       await http.get(url);
       _showDialog();
     } else {
@@ -268,7 +278,7 @@ class _RegisterState extends State<Register> {
 //중복체크
   checkID() async {
     var url = Uri.parse(
-        "http://192.168.35.51:8080/Flutter/select_schdule_dupcheck_flutter.jsp?uid=${uidController.text.trim()}");
+        "http://localhost:8080/Flutter/select_schdule_dupcheck_flutter.jsp?uid=${uidController.text.trim()}");
     var response = await http.get(url);
     // json은 dart가 모르기때문에 decode해야함
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));

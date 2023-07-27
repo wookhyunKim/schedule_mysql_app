@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart'as http;
 import 'package:schedule_mysql_app/model/message.dart';
+import 'package:schedule_mysql_app/model/share.dart';
+import 'package:schedule_mysql_app/view/login.dart';
 
 
 class MyPage extends StatefulWidget {
@@ -140,7 +142,7 @@ class _MyPageState extends State<MyPage> {
                   setState(() {});
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, // 버튼 배경색
+                  backgroundColor: color13, // 버튼 배경색
                   foregroundColor: Colors.white, // 버튼 글씨색
                   minimumSize: const Size(70, 35),
                   shape: RoundedRectangleBorder(
@@ -161,7 +163,7 @@ class _MyPageState extends State<MyPage> {
                   setState(() {});
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, // 버튼 배경색
+                  backgroundColor: color13, // 버튼 배경색
                   foregroundColor: Colors.white, // 버튼 글씨색
                   minimumSize: const Size(70, 35),
                   shape: RoundedRectangleBorder(
@@ -181,6 +183,9 @@ class _MyPageState extends State<MyPage> {
                   deleteAction();
                   deletesnackBarsFunction();
                   Navigator.of(context).pop();
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const Login();
+                  },),);
                 },
                 style: OutlinedButton.styleFrom(
                   minimumSize: const Size(70, 35),
@@ -263,7 +268,7 @@ class _MyPageState extends State<MyPage> {
 //중복체크
   checkID() async {
     var url = Uri.parse(
-        "http://192.168.35.51:8080/Flutter/select_schdule_dupcheck_flutter.jsp?uid=${uidController.text.trim()}");
+        "http://localhost:8080/Flutter/select_schdule_dupcheck_flutter.jsp?uid=${uidController.text.trim()}");
     var response = await http.get(url);
     // json은 dart가 모르기때문에 decode해야함
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
@@ -316,7 +321,7 @@ class _MyPageState extends State<MyPage> {
 //user info 변경
 updateAction() async {
     var url = Uri.parse(
-        "http://192.168.35.51:8080/Flutter/update_schedule_user.jsp?seq=${widget.seq}&uid=${uidController.text.trim()}&upassword=${upasswordController.text.trim()}&uname=${unameController.text.trim()}&ugender=${Message.value}&uemail=${uemailController.text.trim()}&uphone=${uphoneController.text.trim()}");
+        "http://localhost:8080/Flutter/update_schedule_user.jsp?seq=${widget.seq}&uid=${uidController.text.trim()}&upassword=${upasswordController.text.trim()}&uname=${unameController.text.trim()}&ugender=${Message.value}&uemail=${uemailController.text.trim()}&uphone=${uphoneController.text.trim()}");
     var response = await http.get(url);
     // json은 dart가 모르기때문에 decode해야함
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
@@ -333,7 +338,7 @@ updateAction() async {
 // delete 회원탈퇴 지만 삭제하지않고 udeleted를 1로 바꿈
 deleteAction() async {
     var url = Uri.parse(
-        "http://192.168.35.51:8080/Flutter/delete_schedule_user.jsp?seq=${widget.seq}");
+        "http://localhost:8080/Flutter/delete_schedule_user.jsp?seq=${widget.seq}");
     await http.get(url);
     setState(() {});
   }

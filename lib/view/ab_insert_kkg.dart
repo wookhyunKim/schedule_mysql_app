@@ -359,7 +359,7 @@ class _ABinsertState extends State<ABinsert> {
 
 
     var url = Uri.parse(
-        "http://localhost:8080/Flutter/bty/bty_insert_saveAB.jsp?uid=${Share.userID}&title=${tecTitle.text}&amount=${tecAmount.text}&state=${_case}&date=${tecDuedate.text}&content=${tecContent.text}");
+        "http://localhost:8080/Flutter/bty_insert_saveAB.jsp?uid=${Share.userID}&title=${tecTitle.text}&amount=${tecAmount.text}&state=${_case}&date=${tecDuedate.text}&content=${tecContent.text}");
     var response = await http.get(url);
 
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));

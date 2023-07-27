@@ -337,7 +337,7 @@ class _AccountBookState extends State<AccountBook> {
   _getGABList() async {
     G_abList.clear();
     var url = Uri.parse(
-        "http://localhost:8080/Flutter/bty/bty_accountbook.jsp?userID=${Share.userID}");
+        "http://localhost:8080/Flutter/bty_accountbook.jsp?userID=${Share.userID}");
     var response = await http.get(url);
     // print(Share.userID);
 
@@ -359,7 +359,7 @@ class _AccountBookState extends State<AccountBook> {
 
   _deleteAB(String code) async {
     var url = Uri.parse(
-        "http://localhost:8080/Flutter/bty/bty_delete_AB.jsp?code=${code}");
+        "http://localhost:8080/Flutter/bty_delete_AB.jsp?code=${code}");
 
     await http.get(url);
     //var response = await http.get(url);

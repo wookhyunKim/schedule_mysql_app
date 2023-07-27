@@ -259,7 +259,7 @@ class _ABupdateState extends State<ABupdate> {
   _getData() async {
     _data.clear();
     var url = Uri.parse(
-        "http://localhost:8080/Flutter/bty/bty_updateAB.jsp?code=${widget.code}");
+        "http://localhost:8080/Flutter/bty_updateAB.jsp?code=${widget.code}");
     var response = await http.get(url);
 
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
@@ -404,7 +404,7 @@ class _ABupdateState extends State<ABupdate> {
     }
 
     var url = Uri.parse(
-        "http://localhost:8080/Flutter/bty/bty_update_saveAB.jsp?code=${widget.code}&title=${tecTitle.text}&amount=${tecAmount.text}&state=${_case}&date=${tecDuedate.text}&content=${tecContent.text}");
+        "http://localhost:8080/Flutter/bty_update_saveAB.jsp?code=${widget.code}&title=${tecTitle.text}&amount=${tecAmount.text}&state=${_case}&date=${tecDuedate.text}&content=${tecContent.text}");
     var response = await http.get(url);
 
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
