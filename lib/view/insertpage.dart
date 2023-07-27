@@ -32,85 +32,88 @@ class _InsertPageState extends State<InsertPage> {
           backgroundColor: Colors.black,
           foregroundColor: Colors.white,
         ),
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                TextFormField(
-                  controller: dcodeController,
-                  decoration: const InputDecoration(
-                    icon: Icon(Icons.person),
-                    prefixIcon: Icon(Icons.approval_rounded),
-                    labelText: "몇번째 일기인지 입력해주세요",
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      borderSide: BorderSide(
-                        color: Colors.blue,
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: dcodeController,
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.person),
+                      prefixIcon: Icon(Icons.approval_rounded),
+                      labelText: "몇번째 일기인지 입력해주세요",
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderSide: BorderSide(
+                          color: Colors.blue,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                TextFormField(
-                  controller: dtitleController,
-                  decoration: const InputDecoration(
-                    icon: Icon(Icons.person),
-                    prefixIcon: Icon(Icons.title),
-                    labelText: "제목을 입력해주새요",
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      borderSide: BorderSide(
-                        color: Colors.blue,
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextFormField(
+                    controller: dtitleController,
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.person),
+                      prefixIcon: Icon(Icons.title),
+                      labelText: "제목을 입력해주새요",
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderSide: BorderSide(
+                          color: Colors.blue,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                TextFormField(
-                  controller: dcontentController,
-                  maxLines: 7,
-                  decoration: const InputDecoration(
-                    icon: Icon(Icons.person),
-                    prefixIcon: Icon(Icons.content_copy_outlined),
-                    labelText: "내용을 입력해주세요",
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      borderSide: BorderSide(
-                        color: Colors.blue,
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextFormField(
+                    controller: dcontentController,
+                    maxLines: 7,
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.person),
+                      prefixIcon: Icon(Icons.content_copy_outlined),
+                      labelText: "내용을 입력해주세요",
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderSide: BorderSide(
+                          color: Colors.blue,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                TextFormField(
-                  controller: ddateController,
-                  decoration: const InputDecoration(
-                    icon: Icon(Icons.person),
-                    prefixIcon: Icon(Icons.today_outlined),
-                    labelText: "날짜를 입력해주세요",
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      borderSide: BorderSide(
-                        color: Colors.blue,
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextFormField(
+                    controller: ddateController,
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.person),
+                      prefixIcon: Icon(Icons.today_outlined),
+                      labelText: "날짜를 입력해주세요",
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderSide: BorderSide(
+                          color: Colors.blue,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 100,
-                ),
-                ElevatedButton(
-                  onPressed: () => insertAction(),
-                  child: const Text('등록'),
-                ),
-              ],
+                  const SizedBox(
+                    height: 100,
+                  ),
+                  ElevatedButton(
+                    onPressed: () => insertAction(),
+                    child: const Text('등록'),
+                  ),
+                ],
+              ),
             ),
           ),
         ));

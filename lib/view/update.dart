@@ -49,98 +49,101 @@ class _UpdatePageState extends State<UpdatePage> {
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              TextFormField(
-                controller: dcodeController,
-                decoration: const InputDecoration(
-                  icon: Icon(Icons.apple),
-                  prefixIcon: Icon(Icons.approval_rounded),
-                  labelText: "카운트 입니다.",
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    borderSide: BorderSide(
-                      color: Colors.blue,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: dcodeController,
+                  decoration: const InputDecoration(
+                    icon: Icon(Icons.apple),
+                    prefixIcon: Icon(Icons.approval_rounded),
+                    labelText: "카운트 입니다.",
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderSide: BorderSide(
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ),
+                  readOnly: true,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                TextFormField(
+                  controller: dtitleController,
+                  decoration: const InputDecoration(
+                    icon: Icon(Icons.person),
+                    prefixIcon: Icon(Icons.title),
+                    labelText: "제목 입니다.",
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderSide: BorderSide(
+                        color: Colors.blue,
+                      ),
                     ),
                   ),
                 ),
-                readOnly: true,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              TextFormField(
-                controller: dtitleController,
-                decoration: const InputDecoration(
-                  icon: Icon(Icons.person),
-                  prefixIcon: Icon(Icons.title),
-                  labelText: "제목 입니다.",
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    borderSide: BorderSide(
-                      color: Colors.blue,
+                const SizedBox(
+                  height: 15,
+                ),
+                TextFormField(
+                  controller: dcontentController,
+                  maxLines: 7,
+                  decoration: const InputDecoration(
+                    icon: Icon(Icons.person),
+                    prefixIcon: Icon(Icons.content_copy_outlined),
+                    labelText: "내용 입니다.",
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderSide: BorderSide(
+                        color: Colors.blue,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              TextFormField(
-                controller: dcontentController,
-                maxLines: 7,
-                decoration: const InputDecoration(
-                  icon: Icon(Icons.person),
-                  prefixIcon: Icon(Icons.content_copy_outlined),
-                  labelText: "내용 입니다.",
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    borderSide: BorderSide(
-                      color: Colors.blue,
+                const SizedBox(
+                  height: 15,
+                ),
+                TextFormField(
+                  controller: ddateController,
+                  decoration: const InputDecoration(
+                    icon: Icon(Icons.person),
+                    prefixIcon: Icon(Icons.today_outlined),
+                    labelText: "날짜 입니다.",
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderSide: BorderSide(
+                        color: Colors.blue,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              TextFormField(
-                controller: ddateController,
-                decoration: const InputDecoration(
-                  icon: Icon(Icons.person),
-                  prefixIcon: Icon(Icons.today_outlined),
-                  labelText: "날짜 입니다.",
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    borderSide: BorderSide(
-                      color: Colors.blue,
-                    ),
-                  ),
+                const SizedBox(
+                  height: 150,
                 ),
-              ),
-              const SizedBox(
-                height: 150,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () => updataAction(),
-                    child: const Text('수정'),
-                  ),
-                  const SizedBox(
-                    width: 30,
-                  ),
-                  ElevatedButton(
-                    onPressed: () => deleteAction(),
-                    child: const Text('삭제'),
-                  ),
-                ],
-              ),
-            ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () => updataAction(),
+                      child: const Text('수정'),
+                    ),
+                    const SizedBox(
+                      width: 30,
+                    ),
+                    ElevatedButton(
+                      onPressed: () => deleteAction(),
+                      child: const Text('삭제'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

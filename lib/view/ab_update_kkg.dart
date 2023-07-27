@@ -44,85 +44,26 @@ class _ABupdateState extends State<ABupdate> {
         foregroundColor: color02,
         title: const Text('Better than Yesterday'),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Stack(
-                children: [
-                  Container(
-                    color: Colors.grey,
-                    width: 400,
-                    height: 670,
-                  ),
-                  Positioned(
-                    top: 10,
-                    left: 10,
-                    child: SizedBox(
-                      width: 300,
-                      height: 100,
-                      child: Card(
-                        color: Colors.cyan,
-                        child: Column(
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(5.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text('Title'),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: TextField(
-                                controller: tecTitle,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Center(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Stack(
+                  children: [
+                    Container(
+                      color: Colors.grey,
+                      width: 400,
+                      height: 670,
                     ),
-                  ),
-                  // 금액 입력하는 카드 넣기
-                  Positioned(
-                    top: 120,
-                    left: 10,
-                    child: SizedBox(
-                      width: 180,
-                      height: 100,
-                      child: Card(
-                        color: Colors.amber,
-                        child: Column(
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(5.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [Text('금 액 ( 원)')],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: TextField(
-                                controller: tecAmount,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 120,
-                    left: 200,
-                    child: SizedBox(
-                      width: 180,
-                      height: 100,
-                      child: GestureDetector(
-                        onTap: () => _selectState(),
+                    Positioned(
+                      top: 10,
+                      left: 10,
+                      child: SizedBox(
+                        width: 300,
+                        height: 100,
                         child: Card(
                           color: Colors.cyan,
                           child: Column(
@@ -131,90 +72,15 @@ class _ABupdateState extends State<ABupdate> {
                                 padding: EdgeInsets.all(5.0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [Text('상 태')],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Column(
                                   children: [
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          tecConfirmType.text,
-                                          style: TextStyle(fontSize: 20),
-                                        ),
-                                      ],
-                                    )
+                                    Text('Title'),
                                   ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 230,
-                    left: 10,
-                    child: SizedBox(
-                      width: 180,
-                      height: 100,
-                      child: Card(
-                        color: Colors.amber,
-                        child: Column(
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(5.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [Text('날 짜 (yyyy-mm-dd)')],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: TextField(
-                                controller: tecDuedate,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 340,
-                    left: 10,
-                    child: SizedBox(
-                      width: 360,
-                      height: 320,
-                      child: Card(
-                        color: Colors.cyan,
-                        child: Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Column(
-                            children: [
-                              const Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [Text('상세 내용')],
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(5.0),
                                 child: TextField(
-                                  maxLines: 9,
-                                  controller: tecContent,
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                  ),
+                                  controller: tecTitle,
                                 ),
                               ),
                             ],
@@ -222,35 +88,172 @@ class _ABupdateState extends State<ABupdate> {
                         ),
                       ),
                     ),
+                    // 금액 입력하는 카드 넣기
+                    Positioned(
+                      top: 120,
+                      left: 10,
+                      child: SizedBox(
+                        width: 180,
+                        height: 100,
+                        child: Card(
+                          color: Colors.amber,
+                          child: Column(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [Text('금 액 ( 원)')],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: TextField(
+                                  controller: tecAmount,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 120,
+                      left: 200,
+                      child: SizedBox(
+                        width: 180,
+                        height: 100,
+                        child: GestureDetector(
+                          onTap: () => _selectState(),
+                          child: Card(
+                            color: Colors.cyan,
+                            child: Column(
+                              children: [
+                                const Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [Text('상 태')],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Column(
+                                    children: [
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            tecConfirmType.text,
+                                            style: TextStyle(fontSize: 20),
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 230,
+                      left: 10,
+                      child: SizedBox(
+                        width: 180,
+                        height: 100,
+                        child: Card(
+                          color: Colors.amber,
+                          child: Column(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [Text('날 짜 (yyyy-mm-dd)')],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: TextField(
+                                  controller: tecDuedate,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 340,
+                      left: 10,
+                      child: SizedBox(
+                        width: 360,
+                        height: 320,
+                        child: Card(
+                          color: Colors.cyan,
+                          child: Padding(
+                            padding: const EdgeInsets.all(3.0),
+                            child: Column(
+                              children: [
+                                const Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [Text('상세 내용')],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: TextField(
+                                    maxLines: 9,
+                                    controller: tecContent,
+                                    decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () => _cancel(),
+                    child: const Text('취소'),
+                    style: ElevatedButton.styleFrom(
+                        minimumSize: Size(100, 50),
+                        backgroundColor: Colors.blue,
+                        foregroundColor: Colors.white),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  ElevatedButton(
+                    onPressed: () => _save(),
+                    child: const Text('저장'),
+                    style: ElevatedButton.styleFrom(
+                        minimumSize: Size(100, 50),
+                        backgroundColor: Colors.blue,
+                        foregroundColor: Colors.white),
                   ),
                 ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () => _cancel(),
-                  child: const Text('취소'),
-                  style: ElevatedButton.styleFrom(
-                      minimumSize: Size(100, 50),
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                ElevatedButton(
-                  onPressed: () => _save(),
-                  child: const Text('저장'),
-                  style: ElevatedButton.styleFrom(
-                      minimumSize: Size(100, 50),
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white),
-                ),
-              ],
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
