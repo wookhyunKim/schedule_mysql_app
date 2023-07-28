@@ -86,9 +86,10 @@ class _AccountBookState extends State<AccountBook> {
                     for (int i = 0; i < G_abList.length; i++)
                       Dismissible(
                         direction: DismissDirection.startToEnd,
-                        key: ValueKey(i),
+                        key: ValueKey(G_abList[i]['code']),
                         onDismissed: (direction) {
                           _deleteAB(G_abList[i]['code']);
+                          G_abList.removeAt(i);
                         },
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(5, 5, 5, 0),

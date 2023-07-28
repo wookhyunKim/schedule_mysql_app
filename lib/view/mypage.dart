@@ -1,11 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 import 'package:schedule_mysql_app/model/message.dart';
 import 'package:schedule_mysql_app/model/share.dart';
 import 'package:schedule_mysql_app/view/login.dart';
-
 
 class MyPage extends StatefulWidget {
   final int seq;
@@ -48,7 +47,8 @@ class _MyPageState extends State<MyPage> {
   @override
   void initState() {
     super.initState();
-    uidController = TextEditingController(text: widget.uid); // text : widget으로 초기값주기
+    uidController =
+        TextEditingController(text: widget.uid); // text : widget으로 초기값주기
     upasswordController = TextEditingController(text: widget.upassword);
     unameController = TextEditingController(text: widget.uname);
     uphoneController = TextEditingController(text: widget.uphone);
@@ -136,72 +136,91 @@ class _MyPageState extends State<MyPage> {
                   readOnly: true,
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  checkID();
-                  setState(() {});
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: color13, // 버튼 배경색
-                  foregroundColor: Colors.white, // 버튼 글씨색
-                  minimumSize: const Size(70, 35),
-                  shape: RoundedRectangleBorder(
-                    //  버튼 모양 깎기
-                    borderRadius: BorderRadius.circular(20), // 10은 파라미터
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        checkID();
+                        setState(() {});
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: color13, // 버튼 배경색
+                        foregroundColor: Colors.white, // 버튼 글씨색
+                        minimumSize: const Size(70, 35),
+                        shape: RoundedRectangleBorder(
+                          //  버튼 모양 깎기
+                          borderRadius: BorderRadius.circular(20), // 10은 파라미터
+                        ),
+                      ),
+                      child: const Text(
+                        "Check",
+                        style: TextStyle(
+                          fontSize: 10,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-                child: const Text(
-                  "Check",
-                  style: TextStyle(
-                    fontSize: 10,
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        updateAction();
+                        setState(() {});
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: color13, // 버튼 배경색
+                        foregroundColor: Colors.white, // 버튼 글씨색
+                        minimumSize: const Size(70, 35),
+                        shape: RoundedRectangleBorder(
+                          //  버튼 모양 깎기
+                          borderRadius: BorderRadius.circular(20), // 10은 파라미터
+                        ),
+                      ),
+                      child: const Text(
+                        "Modify",
+                        style: TextStyle(
+                          fontSize: 10,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  updateAction();
-                  setState(() {});
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: color13, // 버튼 배경색
-                  foregroundColor: Colors.white, // 버튼 글씨색
-                  minimumSize: const Size(70, 35),
-                  shape: RoundedRectangleBorder(
-                    //  버튼 모양 깎기
-                    borderRadius: BorderRadius.circular(20), // 10은 파라미터
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: OutlinedButton(
+                      onPressed: () {
+                        deleteAction();
+                        deletesnackBarsFunction();
+                        Navigator.of(context).pop();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const Login();
+                            },
+                          ),
+                        );
+                      },
+                      style: OutlinedButton.styleFrom(
+                        minimumSize: const Size(70, 35),
+                        foregroundColor: Colors.red,
+                        side: const BorderSide(
+                          // 테두리
+                          color: Colors.black, // 테두리 색상
+                          width: 1.5, // 테두리 두께
+                        ),
+                      ),
+                      child: const Text(
+                        "회원탈퇴",
+                        style: TextStyle(
+                          fontSize: 10,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-                child: const Text(
-                  "Modify",
-                  style: TextStyle(
-                    fontSize: 10,
-                  ),
-                ),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  deleteAction();
-                  deletesnackBarsFunction();
-                  Navigator.of(context).pop();
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const Login();
-                  },),);
-                },
-                style: OutlinedButton.styleFrom(
-                  minimumSize: const Size(70, 35),
-                  foregroundColor: Colors.red,
-                  side: const BorderSide(
-                    // 테두리
-                    color: Colors.black, // 테두리 색상
-                    width: 1.5, // 테두리 두께
-                  ),
-                ),
-                child: const Text(
-                  "회원탈퇴",
-                  style: TextStyle(
-                    fontSize: 10,
-                  ),
-                ),
+                ],
               ),
             ],
           ),
@@ -211,9 +230,6 @@ class _MyPageState extends State<MyPage> {
   }
 
 // function
-
-
-
 
 // 회원정보를 받아서 정보수정 alert
   _showDialog() {
@@ -235,6 +251,14 @@ class _MyPageState extends State<MyPage> {
             TextButton(
                 onPressed: () {
                   Navigator.of(ctx).pop();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const Login();
+                      },
+                    ),
+                  );
                   Navigator.of(context).pop();
                 },
                 child: const Text("OK")),
@@ -262,9 +286,6 @@ class _MyPageState extends State<MyPage> {
     );
   }
 
-
-
-
 //중복체크
   checkID() async {
     var url = Uri.parse(
@@ -282,7 +303,6 @@ class _MyPageState extends State<MyPage> {
     }
     setState(() {});
   }
-
 
 //중복메세지 스낵바
   snackBarFunction() {
@@ -318,8 +338,9 @@ class _MyPageState extends State<MyPage> {
       ),
     );
   }
+
 //user info 변경
-updateAction() async {
+  updateAction() async {
     var url = Uri.parse(
         "http://localhost:8080/Flutter/update_schedule_user.jsp?seq=${widget.seq}&uid=${uidController.text.trim()}&upassword=${upasswordController.text.trim()}&uname=${unameController.text.trim()}&ugender=${Message.value}&uemail=${uemailController.text.trim()}&uphone=${uphoneController.text.trim()}");
     var response = await http.get(url);
@@ -334,16 +355,15 @@ updateAction() async {
     setState(() {});
   }
 
-
 // delete 회원탈퇴 지만 삭제하지않고 udeleted를 1로 바꿈
-deleteAction() async {
+  deleteAction() async {
     var url = Uri.parse(
         "http://localhost:8080/Flutter/delete_schedule_user.jsp?seq=${widget.seq}");
     await http.get(url);
     setState(() {});
   }
 
-    errorSnackBar() {
+  errorSnackBar() {
     // 파라미터값을 받아사용
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -354,20 +374,4 @@ deleteAction() async {
       ),
     );
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 } //end
